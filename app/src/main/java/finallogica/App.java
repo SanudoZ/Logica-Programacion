@@ -8,8 +8,8 @@ public class App {
     public static void main(String[] args) {
 
         // Arreglos y global
-        String[] productos = new String[10];
-        double[] precios = new double[10];
+        String[] productos = new String[100];
+        double[] precios = new double[100];
 
         productos[0] = "Camisa";
         productos[1] = "Pantalon";
@@ -71,11 +71,21 @@ public class App {
                         cantidad = sc.nextInt();
                         sc.nextLine();
 
+                        if (cantidad <= 0) {
+
+                            System.out.println("Datos invalidos");
+
+                            continue;
+
+                        }
+
                         System.out.println("¿Desea comprar algo mas? 1. Si | 2. No: ");
                         respuesta = sc.nextInt();
                         sc.nextLine();
 
                         if (respuesta == 2) {
+
+                            // Datos de salida
 
                             break;
                         }
@@ -193,8 +203,6 @@ public class App {
 
             }
 
-            // Datos de salida
-
         } catch (Exception e) {
 
             System.out.println("Dato invalido");
@@ -203,6 +211,22 @@ public class App {
     }
 
     // Funciones
+
+    public static double subtotal(int precio, int cantidad) {
+
+        try {
+
+            double subtotal = precio * cantidad;
+
+            return subtotal;
+
+        } catch (Exception e) {
+
+            return -1;
+
+        }
+
+    }
 
     public static double IVA(int precio) {
 
@@ -220,11 +244,37 @@ public class App {
 
     }
 
+    public static double descuentos(int precio, int cantidad) {
+
+        try {
+
+            double descuento = 0;
+
+            if (cantidad >= 5 && cantidad <= 9) {
+
+                descuento = precio * 0.05;
+
+            } else if (cantidad >= 10) {
+
+                descuento = precio * 0.10;
+
+            }
+
+            return descuento;
+
+        } catch (Exception e) {
+
+            return -1;
+
+        }
+
+    }
+
     public static double total(int precio, double iva) {
 
         try {
 
-            double total = precio + iva;
+            double total = precio + iva - descuentos(precio, 1);
 
             return total;
 
