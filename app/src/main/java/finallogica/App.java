@@ -72,6 +72,12 @@ public class App {
                         sc.nextLine();
 
                         if (respuesta == 2) {
+
+                            System.out.println("El precio total es: " + precios(producto, cantidad));
+                            System.out.println("El IVA es: " + IVA(precios(producto, cantidad)));
+                            System.out.println("El total a pagar es: "
+                                    + total(precios(producto, cantidad), IVA(precios(producto, cantidad))));
+
                             break;
                         }
 
@@ -101,6 +107,7 @@ public class App {
 
                     switch (opcionAdmin) {
                         case 1:
+
                             for (int i = 0; i < cantidadProductos; i++) {
                                 System.out.println((i + 1) + ". " + productos[i] + " - $" + precios[i]);
 
@@ -130,11 +137,8 @@ public class App {
 
                             for (int i = 0; i < cantidadProductos; i++) {
 
-                                System.out.println(
-                                        (i + 1) + ". " +
-                                                productos[i] +
-                                                " - $" +
-                                                precios[i]);
+                                System.out.println((i + 1) + ". " + productos[i] + " - $" + precios[i]);
+
                             }
 
                             System.out.println("Seleccione producto:");
@@ -191,11 +195,6 @@ public class App {
             }
 
             // Datos de salida
-
-            System.out.println("El precio total es: " + precios(producto, cantidad));
-            System.out.println("El IVA es: " + IVA(precios(producto, cantidad)));
-            System.out.println(
-                    "El total a pagar es: " + total(precios(producto, cantidad), IVA(precios(producto, cantidad))));
 
         } catch (Exception e) {
 
