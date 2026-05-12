@@ -7,23 +7,21 @@ public class App {
 
     public static void main(String[] args) {
 
-        // Arreglos y global 
-            String[] productos = new String[10];
-            double[] precios = new double[10];
+        // Arreglos y global
+        String[] productos = new String[10];
+        double[] precios = new double[10];
 
-            productos[0] = "Camisa";
-            productos[1] = "Pantalon";
-            productos[2] = "Zapatos";
+        productos[0] = "Camisa";
+        productos[1] = "Pantalon";
+        productos[2] = "Zapatos";
 
-            precios[0] = 1000;
-            precios[1] = 2000;
-            precios[2] = 3000;
+        precios[0] = 1000;
+        precios[1] = 2000;
+        precios[2] = 3000;
 
-            int cantidadProductos = 3;
+        int cantidadProductos = 3;
 
         try {
-
-            
 
             // Clientes
             int Usuario = 0;
@@ -33,6 +31,10 @@ public class App {
 
             // Administrador
             int opcionAdmin = 0;
+            int edicion = 0;
+            int eliminar = 0;
+
+            double nuevoPrecio = 0;
 
             String nuevoProducto = " ";
 
@@ -51,7 +53,7 @@ public class App {
 
             // Proceso
 
-            if (Usuario == 1) {
+            else if (Usuario == 1) {
 
                 while (true) {
 
@@ -102,7 +104,78 @@ public class App {
                             for (int i = 0; i < cantidadProductos; i++) {
                                 System.out.println((i + 1) + ". " + productos[i] + " - $" + precios[i]);
 
+                                break;
+
                             }
+
+                        case 2:
+
+                            System.out.println("Nombre del producto:");
+                            nuevoProducto = sc.nextLine();
+
+                            System.out.println("Precio:");
+                            nuevoPrecio = sc.nextDouble();
+                            sc.nextLine();
+
+                            productos[cantidadProductos] = nuevoProducto;
+                            precios[cantidadProductos] = nuevoPrecio;
+
+                            cantidadProductos++;
+
+                            System.out.println("Producto agregado");
+
+                            break;
+
+                        case 3:
+
+                            for (int i = 0; i < cantidadProductos; i++) {
+
+                                System.out.println(
+                                        (i + 1) + ". " +
+                                                productos[i] +
+                                                " - $" +
+                                                precios[i]);
+                            }
+
+                            System.out.println("Seleccione producto:");
+                            edicion = sc.nextInt() - 1;
+                            sc.nextLine();
+
+                            System.out.println("Nuevo precio:");
+                            precios[edicion] = sc.nextDouble();
+                            sc.nextLine();
+
+                            System.out.println("Precio actualizado");
+
+                            break;
+
+                        case 4:
+
+                            for (int i = 0; i < cantidadProductos; i++) {
+
+                                System.out.println((i + 1) + ". " + productos[i]);
+
+                            }
+
+                            System.out.println("Seleccione el producto que va a eliminar:");
+                            eliminar = sc.nextInt() - 1;
+
+                            for (int i = eliminar; i < cantidadProductos - 1; i++) {
+
+                                productos[i] = productos[i + 1];
+                                precios[i] = precios[i + 1];
+                            }
+
+                            cantidadProductos--;
+
+                            System.out.println("Producto eliminado");
+
+                            break;
+
+                        case 5:
+
+                            return;
+
                     }
 
                     break;
@@ -158,8 +231,6 @@ public class App {
                     break;
 
             }
-
-            //Prueba git 
 
             return precio;
 
