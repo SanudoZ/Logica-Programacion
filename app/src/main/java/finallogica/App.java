@@ -71,6 +71,10 @@ public class App {
                         cantidad = sc.nextInt();
                         sc.nextLine();
 
+                        carrito += total((int) precios[producto - 1], IVA((int) precios[producto - 1]), cantidad);
+
+                        System.out.println("Carrito actual: " + carrito);
+
                         if (cantidad <= 0) {
 
                             System.out.println("Datos invalidos");
@@ -90,8 +94,8 @@ public class App {
                             System.out.println("Subtotal: " + subtotal((int) precios[producto - 1], cantidad));
                             System.out.println("IVA: " + IVA((int) precios[producto - 1]));
                             System.out.println("Descuento: " + descuentos((int) precios[producto - 1], cantidad));
-                            System.out.println(
-                                    "Total: " + total((int) precios[producto - 1], IVA((int) precios[producto - 1])));
+                            System.out.println("Total: "
+                                    + total((int) precios[producto - 1], IVA((int) precios[producto - 1]), cantidad));
 
                             break;
                         }
@@ -238,7 +242,7 @@ public class App {
 
         try {
 
-            double iva = precio * 0.19;
+            double iva = subtotal(precio, 1) * 0.19;
 
             return iva;
 
@@ -258,11 +262,11 @@ public class App {
 
             if (cantidad >= 5 && cantidad <= 9) {
 
-                descuento = precio * 0.05;
+                descuento = subtotal(precio, cantidad) * 0.05;
 
             } else if (cantidad >= 10) {
 
-                descuento = precio * 0.10;
+                descuento = subtotal(precio, cantidad) * 0.10;
 
             }
 
@@ -276,11 +280,11 @@ public class App {
 
     }
 
-    public static double total(int precio, double iva) {
+    public static double total(int precio, double iva, int cantidad) {
 
         try {
 
-            double total = precio + iva - descuentos(precio, 1);
+            double total = subtotal(precio, cantidad) + iva - descuentos(precio, cantidad);
 
             return total;
 
