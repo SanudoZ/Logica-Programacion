@@ -9,7 +9,11 @@ public class App {
 
         // Arreglos y global
         String[] productos = new String[100];
+        String[] carritoProductos = new String[100];
+
         double[] precios = new double[100];
+
+        int[] CarritoCantidad = new int[100];
 
         productos[0] = "Camisa";
         productos[1] = "Pantalon";
@@ -22,6 +26,7 @@ public class App {
         int cantidadProductos = 3;
 
         double carrito = 0;
+        double CantidadCarro = 0;
 
         try {
 
@@ -71,6 +76,11 @@ public class App {
                         cantidad = sc.nextInt();
                         sc.nextLine();
 
+                        carritoProductos[(int) CantidadCarro] = productos[producto - 1];
+                        CarritoCantidad[(int) CantidadCarro] = cantidad;
+
+                        CantidadCarro++;
+
                         carrito += total((int) precios[producto - 1], IVA((int) precios[producto - 1]), cantidad);
 
                         System.out.println("Carrito actual: " + carrito);
@@ -91,11 +101,18 @@ public class App {
 
                             // Datos de salida
 
+                            System.out.println("\nFACTURA");
+
+                            System.out.println("Total acumulado: " + carrito);
                             System.out.println("Subtotal: " + subtotal((int) precios[producto - 1], cantidad));
                             System.out.println("IVA: " + IVA((int) precios[producto - 1]));
                             System.out.println("Descuento: " + descuentos((int) precios[producto - 1], cantidad));
-                            System.out.println("Total: "
-                                    + total((int) precios[producto - 1], IVA((int) precios[producto - 1]), cantidad));
+
+                            for (int i = 0; i < CantidadCarro; i++) {
+
+                                System.out.println(carritoProductos[i] + " x " + CarritoCantidad[i]);
+
+                            }
 
                             break;
                         }
