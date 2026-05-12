@@ -40,18 +40,18 @@ public class App {
                         producto = sc.nextInt();
                         sc.nextLine();
 
-                        if (producto == 4) {
-                            System.out.println("Gracias por elegirnos");
-
-                            break;
-                        }
-
-                        else if (producto >= 1 && producto <= 3) {
+                        if (producto >= 1 && producto <= 3) {
 
                             System.out.println(" ¿Cuantas desea comprar?");
                             cantidad = sc.nextInt();
                             sc.nextLine();
 
+                        }
+
+                        else if (producto == 4) {
+                            System.out.println("Gracias por elegirnos");
+
+                            break;
                         }
 
                         else {
@@ -91,7 +91,7 @@ public class App {
                     break;
 
                 case 3:
-                    precio = 3000 * cantidad   ;
+                    precio = 3000 * cantidad;
                     break;
 
                 default:
@@ -109,4 +109,43 @@ public class App {
         }
 
     }
+
+    public static double IVA (int precio) {
+
+        try {
+
+            double iva = precio * 0.19;
+
+            return iva;
+
+        } catch (Exception e) {
+
+            return -1;
+
+        }
+
+    }
+
+    public static double total (int precio, double iva) {
+
+        try {
+
+            double total = precio + iva;
+
+            return total;
+
+        } catch (Exception e) {
+
+            return -1;
+
+        }
+
+    }
+
 }
+
+
+
+
+
+    
