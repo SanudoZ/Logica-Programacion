@@ -87,6 +87,12 @@ public class App {
 
                             // Datos de salida
 
+                            System.out.println("Subtotal: " + subtotal((int) precios[producto - 1], cantidad));
+                            System.out.println("IVA: " + IVA((int) precios[producto - 1]));
+                            System.out.println("Descuento: " + descuentos((int) precios[producto - 1], cantidad));
+                            System.out.println(
+                                    "Total: " + total((int) precios[producto - 1], IVA((int) precios[producto - 1])));
+
                             break;
                         }
 
