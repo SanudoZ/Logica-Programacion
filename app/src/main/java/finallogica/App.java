@@ -21,7 +21,11 @@ public class App {
 
         int cantidadProductos = 3;
 
+        double carrito = 0;
+
         try {
+
+            // Variables
 
             // Clientes
             int Usuario = 0;
@@ -47,8 +51,8 @@ public class App {
             sc.nextLine();
 
             if (Usuario == 3) {
-                System.out.println("Vuelva pronto");
 
+                System.out.println("Vuelva pronto");
             }
 
             // Proceso
@@ -72,11 +76,6 @@ public class App {
                         sc.nextLine();
 
                         if (respuesta == 2) {
-
-                            System.out.println("El precio total es: " + precios(producto, cantidad));
-                            System.out.println("El IVA es: " + IVA(precios(producto, cantidad)));
-                            System.out.println("El total a pagar es: "
-                                    + total(precios(producto, cantidad), IVA(precios(producto, cantidad))));
 
                             break;
                         }
@@ -111,9 +110,9 @@ public class App {
                             for (int i = 0; i < cantidadProductos; i++) {
                                 System.out.println((i + 1) + ". " + productos[i] + " - $" + precios[i]);
 
-                                break;
-
                             }
+
+                            break;
 
                         case 2:
 
@@ -178,7 +177,7 @@ public class App {
 
                         case 5:
 
-                            return;
+                            break;
 
                     }
 
@@ -205,42 +204,6 @@ public class App {
 
     // Funciones
 
-    public static int precios(int producto, int cantidad) {
-
-        try {
-
-            int precio = 0;
-
-            switch (producto) {
-
-                case 1:
-                    precio = 1000 * cantidad;
-                    break;
-
-                case 2:
-                    precio = 2000 * cantidad;
-                    break;
-
-                case 3:
-                    precio = 3000 * cantidad;
-                    break;
-
-                default:
-                    System.out.println("Producto no encontrado");
-                    break;
-
-            }
-
-            return precio;
-
-        } catch (Exception e) {
-
-            return -1;
-
-        }
-
-    }
-
     public static double IVA(int precio) {
 
         try {
@@ -262,11 +225,8 @@ public class App {
         try {
 
             double total = precio + iva;
-            double carrito = 0;
 
-            carrito += total;
-
-            return carrito;
+            return total;
 
         } catch (Exception e) {
 
