@@ -51,188 +51,201 @@ public class App {
 
             // Datos de entrada
 
-            System.out.println("¿Que tipo de usuario es?' 1. Cliente | 2. Administrador | 3. Salir: ");
-            Usuario = sc.nextInt();
-            sc.nextLine();
-
-            if (Usuario == 3) {
-
-                System.out.println("Vuelva pronto");
-            }
-
-            // Proceso
-
-            else if (Usuario == 1) {
-
+            while (true) {
                 while (true) {
 
-                    System.out.println("¿Que desea comprar? 1. Camisa | 2. Pantalon | 3. Zapatos | 4. Salir: ");
-                    producto = sc.nextInt();
+                    System.out.println("¿Que tipo de usuario es?' 1. Cliente | 2. Administrador | 3. Salir: ");
+                    Usuario = sc.nextInt();
                     sc.nextLine();
 
-                    if (producto >= 1 && producto <= 3) {
+                    if (Usuario == 3) {
 
-                        System.out.println(" ¿Cuantas desea comprar?");
-                        cantidad = sc.nextInt();
-                        sc.nextLine();
-
-                        carritoProductos[(int) CantidadCarro] = productos[producto - 1];
-                        CarritoCantidad[(int) CantidadCarro] = cantidad;
-
-                        CantidadCarro++;
-
-                        carrito += total((int) precios[producto - 1], IVA((int) precios[producto - 1]), cantidad);
-
-                        System.out.println("Carrito actual: " + carrito);
-
-                        if (cantidad <= 0) {
-
-                            System.out.println("Datos invalidos");
-
-                            continue;
-
-                        }
-
-                        System.out.println("¿Desea comprar algo mas? 1. Si | 2. No: ");
-                        respuesta = sc.nextInt();
-                        sc.nextLine();
-
-                        if (respuesta == 2) {
-
-                            // Datos de salida
-
-                            System.out.println("\nFACTURA");
-
-                            System.out.println("Total acumulado: " + carrito);
-                            System.out.println("Subtotal: " + subtotal((int) precios[producto - 1], cantidad));
-                            System.out.println("IVA: " + IVA((int) precios[producto - 1]));
-                            System.out.println("Descuento: " + descuentos((int) precios[producto - 1], cantidad));
-
-                            for (int i = 0; i < CantidadCarro; i++) {
-
-                                System.out.println(carritoProductos[i] + " x " + CarritoCantidad[i]);
-
-                            }
-
-                            break;
-                        }
-
-                    }
-
-                    else if (producto == 4) {
-                        System.out.println("Gracias por elegirnos");
+                        System.out.println("Vuelva pronto");
 
                         break;
                     }
 
-                    else {
-                        System.out.println("Producto no encontrado");
+                    // Proceso
+
+                    else if (Usuario == 1) {
+
+                        while (true) {
+
+                            System.out.println("¿Que desea comprar? 1. Camisa | 2. Pantalon | 3. Zapatos | 4. Salir: ");
+                            producto = sc.nextInt();
+                            sc.nextLine();
+
+                            if (producto >= 1 && producto <= 3) {
+
+                                System.out.println(" ¿Cuantas desea comprar?");
+                                cantidad = sc.nextInt();
+                                sc.nextLine();
+
+                                carritoProductos[(int) CantidadCarro] = productos[producto - 1];
+                                CarritoCantidad[(int) CantidadCarro] = cantidad;
+
+                                CantidadCarro++;
+
+                                carrito += total((int) precios[producto - 1], IVA((int) precios[producto - 1]),
+                                        cantidad);
+
+                                System.out.println("Carrito actual: " + carrito);
+
+                                if (cantidad <= 0) {
+
+                                    System.out.println("Datos invalidos");
+
+                                    continue;
+
+                                }
+
+                                System.out.println("¿Desea comprar algo mas? 1. Si | 2. No: ");
+                                respuesta = sc.nextInt();
+                                sc.nextLine();
+
+                                if (respuesta == 2) {
+
+                                    // Datos de salida
+
+                                    System.out.println("\nFACTURA");
+
+                                    System.out.println("Total acumulado: " + carrito);
+                                    System.out.println("Subtotal: " + subtotal((int) precios[producto - 1], cantidad));
+                                    System.out.println("IVA: " + IVA((int) precios[producto - 1]));
+                                    System.out
+                                            .println("Descuento: " + descuentos((int) precios[producto - 1], cantidad));
+
+                                    for (int i = 0; i < CantidadCarro; i++) {
+
+                                        System.out.println(carritoProductos[i] + " x " + CarritoCantidad[i]);
+
+                                    }
+
+                                    break;
+                                }
+
+                            }
+
+                            else if (producto == 4) {
+                                System.out.println("Gracias por elegirnos");
+
+                                break;
+                            }
+
+                            else {
+                                System.out.println("Producto no encontrado");
+                            }
+
+                        }
+                    }
+
+                    else if (Usuario == 2) {
+
+                        while (true) {
+
+                            System.out.println(
+                                    "¿Que desea hacer? 1. Ver productos | 2. agregar productos | 3. Editar precio | 4. Eliminar productos | 5. Salir: ");
+                            opcionAdmin = sc.nextInt();
+                            sc.nextLine();
+
+                            switch (opcionAdmin) {
+                                case 1:
+
+                                    for (int i = 0; i < cantidadProductos; i++) {
+                                        System.out.println((i + 1) + ". " + productos[i] + " - $" + precios[i]);
+
+                                    }
+
+                                    break;
+
+                                case 2:
+
+                                    System.out.println("Nombre del producto:");
+                                    nuevoProducto = sc.nextLine();
+
+                                    System.out.println("Precio:");
+                                    nuevoPrecio = sc.nextDouble();
+                                    sc.nextLine();
+
+                                    productos[cantidadProductos] = nuevoProducto;
+                                    precios[cantidadProductos] = nuevoPrecio;
+
+                                    cantidadProductos++;
+
+                                    System.out.println("Producto agregado");
+
+                                    break;
+
+                                case 3:
+
+                                    for (int i = 0; i < cantidadProductos; i++) {
+
+                                        System.out.println((i + 1) + ". " + productos[i] + " - $" + precios[i]);
+
+                                    }
+
+                                    System.out.println("Seleccione producto:");
+                                    edicion = sc.nextInt() - 1;
+                                    sc.nextLine();
+
+                                    System.out.println("Nuevo precio:");
+                                    precios[edicion] = sc.nextDouble();
+                                    sc.nextLine();
+
+                                    System.out.println("Precio actualizado");
+
+                                    break;
+
+                                case 4:
+
+                                    for (int i = 0; i < cantidadProductos; i++) {
+
+                                        System.out.println((i + 1) + ". " + productos[i]);
+
+                                    }
+
+                                    System.out.println("Seleccione el producto que va a eliminar:");
+                                    eliminar = sc.nextInt() - 1;
+
+                                    for (int i = eliminar; i < cantidadProductos - 1; i++) {
+
+                                        productos[i] = productos[i + 1];
+                                        precios[i] = precios[i + 1];
+                                    }
+
+                                    cantidadProductos--;
+
+                                    System.out.println("Producto eliminado");
+
+                                    break;
+
+                                case 5:
+
+                                    System.out.println("Saliendo del administrador...");
+                                    opcionAdmin = 5;
+
+                                    break;
+
+                            }
+                            if (opcionAdmin == 5) {
+                                break;
+                            }
+
+                        }
+
                     }
 
                 }
-            }
-
-            else if (Usuario == 2) {
-
-                while (true) {
-
-                    System.out.println(
-                            "¿Que desea hacer? 1. Ver productos | 2. agregar productos | 3. Editar precio | 4. Eliminar productos | 5. Salir: ");
-                    opcionAdmin = sc.nextInt();
-                    sc.nextLine();
-
-                    switch (opcionAdmin) {
-                        case 1:
-
-                            for (int i = 0; i < cantidadProductos; i++) {
-                                System.out.println((i + 1) + ". " + productos[i] + " - $" + precios[i]);
-
-                            }
-
-                            break;
-
-                        case 2:
-
-                            System.out.println("Nombre del producto:");
-                            nuevoProducto = sc.nextLine();
-
-                            System.out.println("Precio:");
-                            nuevoPrecio = sc.nextDouble();
-                            sc.nextLine();
-
-                            productos[cantidadProductos] = nuevoProducto;
-                            precios[cantidadProductos] = nuevoPrecio;
-
-                            cantidadProductos++;
-
-                            System.out.println("Producto agregado");
-
-                            break;
-
-                        case 3:
-
-                            for (int i = 0; i < cantidadProductos; i++) {
-
-                                System.out.println((i + 1) + ". " + productos[i] + " - $" + precios[i]);
-
-                            }
-
-                            System.out.println("Seleccione producto:");
-                            edicion = sc.nextInt() - 1;
-                            sc.nextLine();
-
-                            System.out.println("Nuevo precio:");
-                            precios[edicion] = sc.nextDouble();
-                            sc.nextLine();
-
-                            System.out.println("Precio actualizado");
-
-                            break;
-
-                        case 4:
-
-                            for (int i = 0; i < cantidadProductos; i++) {
-
-                                System.out.println((i + 1) + ". " + productos[i]);
-
-                            }
-
-                            System.out.println("Seleccione el producto que va a eliminar:");
-                            eliminar = sc.nextInt() - 1;
-
-                            for (int i = eliminar; i < cantidadProductos - 1; i++) {
-
-                                productos[i] = productos[i + 1];
-                                precios[i] = precios[i + 1];
-                            }
-
-                            cantidadProductos--;
-
-                            System.out.println("Producto eliminado");
-
-                            break;
-
-                        case 5:
-
-                            break;
-
-                    }
-
-                    break;
-
-                }
 
             }
 
-            else {
+        }
 
-                System.out.println("Usuario no encontrado");
+        catch (
 
-            }
+        Exception e) {
 
-        } catch (Exception e) {
-
-            System.out.println("Dato invalido");
+            System.out.println("Error: " + e.getMessage());
         }
 
     }
