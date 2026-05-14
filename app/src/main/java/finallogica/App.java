@@ -8,12 +8,12 @@ public class App {
     public static void main(String[] args) {
 
         // Arreglos y global
-        String[] productos = new String[100];
-        String[] carritoProductos = new String[100];
+        String[] productos = new String[9999999];
+        String[] carritoProductos = new String[9999999];
 
-        double[] precios = new double[100];
+        double[] precios = new double[9999999];
 
-        int[] CarritoCantidad = new int[100];
+        int[] CarritoCantidad = new int[9999999];
 
         productos[0] = "Camisa";
         productos[1] = "Pantalon";
@@ -47,9 +47,9 @@ public class App {
 
             String nuevoProducto = " ";
 
-            Scanner sc = new Scanner(System.in);
-
             // Datos de entrada
+
+            Scanner sc = new Scanner(System.in);
 
             while (true) {
 
@@ -83,7 +83,7 @@ public class App {
 
                         if (producto >= 1 && producto <= cantidadProductos) {
 
-                            System.out.println(" ¿Cuantas desea comprar?");
+                            System.out.println(" ¿Cuantas desea comprar? | | 0. Salir");
                             cantidad = sc.nextInt();
                             sc.nextLine();
 
@@ -96,11 +96,19 @@ public class App {
 
                             System.out.println("Carrito actual: " + carrito);
 
-                            if (cantidad <= 0) {
+                            if (cantidad < 0) {
 
                                 System.out.println("Datos invalidos");
 
                                 continue;
+
+                            }
+
+                            else if (cantidad == 0) {
+
+                                System.out.println("Vuelva pronto");
+
+                                break;
 
                             }
 
