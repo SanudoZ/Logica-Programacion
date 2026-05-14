@@ -37,6 +37,7 @@ public class App {
             int producto = 0;
             int cantidad = 0;
             int respuesta = 0;
+            int unidades = 0;
 
             // Administrador
             int opcionAdmin = 0;
@@ -91,8 +92,9 @@ public class App {
                             CarritoCantidad[(int) CantidadCarro] = cantidad;
 
                             CantidadCarro++;
+                            unidades += cantidad;
 
-                            carrito += total((int) precios[producto - 1], cantidad);
+                            carrito += total((int) precios[producto - 1], cantidad, unidades);
 
                             System.out.println("Carrito actual: " + carrito);
 
@@ -125,8 +127,11 @@ public class App {
                                 System.out.println("Total acumulado: " + carrito);
                                 System.out.println("Subtotal: " + subtotal((int) precios[producto - 1], cantidad));
                                 System.out.println("IVA: " + IVA((int) precios[producto - 1]));
-                                System.out
-                                        .println("Descuento: " + descuentos((int) precios[producto - 1], cantidad));
+                                System.out.println("Descuento: " + descuentos((int) precios[producto - 1], cantidad));
+
+                                System.out.println("IVA (19%): " + (carrito - (carrito / 1.19)));
+                                System.out.println("Descuento aplicado: " + descuentos(0, unidades));
+                                System.out.println("Total unidades compradas: " + unidades);
 
                                 for (int i = 0; i < CantidadCarro; i++) {
 
@@ -321,7 +326,7 @@ public class App {
 
     }
 
-    public static double total(int precio, int cantidad) {
+    public static double total(int precio, int cantidad, int unidades) {
 
         try {
 
