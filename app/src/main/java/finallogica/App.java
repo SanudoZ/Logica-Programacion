@@ -126,40 +126,36 @@ public class App {
                                 // Datos de salida
 
                                 System.out.println("\nFACTURA");
-                                
+
                                 System.out.println("================================");
-                                
+
                                 System.out.println("Total acumulado: " + carrito);
-                                
+
                                 for (int i = 0; i < CantidadCarro; i++) {
-                                    
-                                    System.out.println(carritoProductos[i] + " x " + CarritoCantidad[i] + " - " + subtotal((int) precios[i], CarritoCantidad[i]));
-                                    
+
+                                    System.out.println(carritoProductos[i] + " x " + CarritoCantidad[i] + " - "
+                                            + subtotal((int) precios[i], CarritoCantidad[i]));
+
                                 }
-                                
+
                                 System.out.println("Total unidades compradas: " + unidades);
-                                
+
                                 System.out.println("================================");
 
                                 System.out.println("Subtotal: " + subtotal((int) precios[producto - 1], cantidad));
 
                                 System.out.println("IVA: " + IVA((int) precios[producto - 1]));
 
-                                System.out.println( "Descuento: " + descuentos((int) precios[producto - 1], cantidad, unidades));
-                                        
+                                System.out.println(
+                                        "Descuento: " + descuentos((int) precios[producto - 1], cantidad, unidades));
+
                                 System.out.println("IVA (19%): " + (carrito - (carrito / 1.19)));
-                                
+
                                 System.out.println("Descuento aplicado: " + descuento);
 
                                 System.out.println("Total a pagar: " + carrito);
 
                                 System.out.println("================================");
-
-                                for (int i = 0; i < CantidadCarro; i++) {
-
-                                    System.out.println(carritoProductos[i] + " x " + CarritoCantidad[i]);
-
-                                }
 
                                 break;
                             }
