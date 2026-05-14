@@ -39,6 +39,8 @@ public class App {
             int respuesta = 0;
             int unidades = 0;
 
+            double descuento = 0;
+
             // Administrador
             int opcionAdmin = 0;
             int edicion = 0;
@@ -94,6 +96,7 @@ public class App {
                             CantidadCarro++;
                             unidades += cantidad;
 
+                            descuento += descuentos((int) precios[producto - 1], cantidad, unidades);
                             carrito += total((int) precios[producto - 1], cantidad, unidades);
 
                             System.out.println("Carrito actual: " + carrito);
@@ -127,10 +130,10 @@ public class App {
                                 System.out.println("Total acumulado: " + carrito);
                                 System.out.println("Subtotal: " + subtotal((int) precios[producto - 1], cantidad));
                                 System.out.println("IVA: " + IVA((int) precios[producto - 1]));
-                                System.out.println("Descuento: " + descuentos((int) precios[producto - 1], cantidad));
+                                System.out.println("Descuento: " + descuentos((int) precios[producto - 1], cantidad, unidades));
 
                                 System.out.println("IVA (19%): " + (carrito - (carrito / 1.19)));
-                                System.out.println("Descuento aplicado: " + descuentos(0, unidades));
+                                System.out.println("Descuento aplicado: " + descuento);
                                 System.out.println("Total unidades compradas: " + unidades);
 
                                 for (int i = 0; i < CantidadCarro; i++) {
@@ -300,17 +303,17 @@ public class App {
 
     }
 
-    public static double descuentos(int precio, int cantidad) {
+    public static double descuentos(int precio, int cantidad, int unidades) {
 
         try {
 
             double descuento = 0;
 
-            if (cantidad >= 5 && cantidad <= 9) {
+            if (unidades >= 5 && unidades <= 9) {
 
                 descuento = subtotal(precio, cantidad) * 0.05;
 
-            } else if (cantidad >= 10) {
+            } else if (unidades >= 10) {
 
                 descuento = subtotal(precio, cantidad) * 0.10;
 
@@ -333,7 +336,7 @@ public class App {
             double iva = IVA(precio);
             double subtotal = subtotal(precio, cantidad);
 
-            double total = subtotal + iva - descuentos(precio, cantidad);
+            double total = subtotal + iva - descuentos(precio, cantidad, unidades);
 
             return total;
 
