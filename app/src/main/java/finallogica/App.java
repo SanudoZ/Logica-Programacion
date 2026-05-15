@@ -12,6 +12,7 @@ public class App {
         String[] carritoProductos = new String[9999999];
 
         double[] precios = new double[9999999];
+        double[] carritoPrecios = new double[9999999];
 
         int[] CarritoCantidad = new int[9999999];
 
@@ -91,6 +92,7 @@ public class App {
                             sc.nextLine();
 
                             carritoProductos[(int) CantidadCarro] = productos[producto - 1];
+                            carritoPrecios[(int) CantidadCarro] = precios[producto - 1];
                             CarritoCantidad[(int) CantidadCarro] = cantidad;
 
                             CantidadCarro++;
@@ -129,35 +131,25 @@ public class App {
 
                                 System.out.println("================================");
 
-                                System.out.println("Total acumulado: " + carrito);
-
                                 for (int i = 0; i < CantidadCarro; i++) {
-
-                                    System.out.println(carritoProductos[i] + " x " + CarritoCantidad[i] + " - "
-                                            + subtotal((int) precios[i], CarritoCantidad[i]));
-
+                                    System.out.println(carritoProductos[i] + " x " + CarritoCantidad[i] + " - $"
+                                            + subtotal((int) carritoPrecios[i], CarritoCantidad[i]));
                                 }
+
+                                System.out.println("================================");
 
                                 System.out.println("Total unidades compradas: " + unidades);
 
-                                System.out.println("================================");
+                                System.out.println("IVA (19%): $" + (carrito - (carrito / 1.19)));
 
-                                System.out.println("Subtotal: " + subtotal((int) precios[producto - 1], cantidad));
+                                System.out.println("Descuento aplicado: $" + descuento);
 
-                                System.out.println("IVA: " + IVA((int) precios[producto - 1]));
-
-                                System.out.println(
-                                        "Descuento: " + descuentos((int) precios[producto - 1], cantidad, unidades));
-
-                                System.out.println("IVA (19%): " + (carrito - (carrito / 1.19)));
-
-                                System.out.println("Descuento aplicado: " + descuento);
-
-                                System.out.println("Total a pagar: " + carrito);
-
+                                System.out.println("Total a pagar: $" + carrito);
+                                
                                 System.out.println("================================");
 
                                 break;
+
                             }
 
                         }
