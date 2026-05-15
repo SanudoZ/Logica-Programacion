@@ -234,6 +234,7 @@ public class App {
 
                                 System.out.println("Seleccione el producto que va a eliminar:");
                                 eliminar = sc.nextInt() - 1;
+                                sc.nextLine();
 
                                 for (int i = eliminar; i < cantidadProductos - 1; i++) {
 
